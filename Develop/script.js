@@ -9,7 +9,6 @@ const characters = [
 
 function generatePassword() {
   let password = '';
-  // Prompt for password length
   try {
     do {
       var passwordLength = askLength();
@@ -18,7 +17,6 @@ function generatePassword() {
     alert(err);
     return;
   }
-  // Prompt for password character types
   try {
     var finalCharSelected = [];
     for (let i = 0; i < characters.length; i++) {
@@ -50,7 +48,7 @@ function generatePassword() {
 function askLength() {
   let response = prompt(`How many characters will the password be?\nChoose a value between 8 and 128:`);
   if (response === null) {
-    throw "Password generation cancelled.";
+    throw "Password generation failed.";
   }
   if (isNaN(response)) {
     alert('That is not a number.  Please try again.')
@@ -59,7 +57,7 @@ function askLength() {
     alert('That is not a whole number. Please try again.')
   }
   else if (!(response >= 8 && response <= 128)) {
-    alert('That number is outside the bounds.  Please try again.')
+    alert('That number is outside the params.  Please try again.')
   }
   else {
     return response;
@@ -69,7 +67,7 @@ function askLength() {
 function askPreference(charactertype) {
   let response = prompt(`Do you want ${charactertype} characters? (Y/N):`);
   if (response === null) {
-    throw "Password generation cancelled.";
+    throw "Password generation failed.";
   }
   response = response.toLowerCase();
   if (response !== 'y' && response !== 'n' && response !== 'yes' && response !== 'no') {
